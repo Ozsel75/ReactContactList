@@ -1,13 +1,25 @@
+import { useState } from "react";
 
-import './App.css';
-import Contacts from './components/contacts';
-import List from './components/list';
+import React from "react";
+import "./App.css";
+import Social from "./components/Social";
+import Alert from "./components/Alert";
+import Contacts from "./components/Contacts";
+import Footer from "./components/Footer";
 
 function App() {
+  const [alert, setAlert] = useState({
+    type: "",
+    message: "",
+  });
   return (
-    <div className="App">
-      <Contacts />
-      <List />
+    <div id="container">
+      <Social />
+      <Alert alert={alert} />
+      <div className="App">
+        <Contacts setAlert={setAlert} alert={alert} />
+      </div>
+      
     </div>
   );
 }

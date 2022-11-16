@@ -1,38 +1,263 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu Mono", monospace;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#container {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(to right top, #707b8b, #769aa7, #83b9b7, #a6d6ba, #deeebb);;
   display: flex;
   flex-direction: column;
+  
+  align-items: center;
+}
+#container .social {
+  margin: 2rem 2rem 0 auto;
+  display: flex;
+  gap: 0.7rem;
+}
+#container .alert-container {
+  position: relative;
+  width: 50%;
+  height: 50px;
+  overflow: hidden;
+}
+#container .alert-container .alertBox {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  left: -100%;
+  transition: all 2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f2f2f2;
+  font-weight: 700;
+}
+#container .alert-container .alertBox.Error {
+  background-color: #f46677;
+  left: 0;
+}
+#container .alert-container .alertBox.Success {
+  background-color: #3eb281;
+  left: 0;
+}
+#container .social a {
+  color: #7a7b7b;
+  font-size: 2rem;
+  transition: color 0.5s;
+}
+#container .social a:hover {
+  color: #5792b0;
+}
+.App {
+  background-color: #f8f7f7;
+  width: 40%;
+  height: 70vh;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+}
+.App .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+}
+#Search {
+  background-image: linear-gradient(to right top, #250015, #3e1c36, #56385b, #6a5784, #7a78ae, #788fc9, #72a7e2, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+ 
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+#Search .appTitle {
+  color: #fff;
+}
+#Search .search-container {
+  background-color: #f8f7f7;
+  border-radius: 1.8rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1rem 0.5rem;
+}
+#Search .search-container .search-input {
+  width: 90%;
+  background-color: #f8f7f7;
+  border-radius: 1.8rem;
+  outline: none;
+  border: 0;
+  padding: 0.5rem 1rem;
+}
+#Search .search-container .search-input::placeholder {
+  color: rgba(2, 2, 2, 50%);
+  font-size: 1rem;
+}
+#Search .search-container .fa-magnifying-glass {
+  color: rgba(2, 2, 2, 40%);
+  font-size: 1.3rem;
+}
+#List {
+  width: 100%;
+  padding: 2rem;
+  margin-bottom: auto;
+  overflow: auto;
+}
+#List .user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#List .user-list .user-item {
+  background-color: #fff;
+  display: flex;
+  border-radius: 1.1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1rem;
+  align-items: center;
+  gap: 2rem;
+}
+#List .user-list .user-item .user-picture {
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  color: #a7a6a6;
+  font-size: 1.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#List .user-list .user-item .user-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#Form {
+  width: 100%;
+  padding: 0 2rem;
+}
+#Form .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+#Form .footer .modal {
+  position: absolute;
+  background-color: #f8f7f7;
+  border-radius: 2rem;
+  width: 50%;
+  top: 25%;
+  left: 25%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.43);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.8px);
+  -webkit-backdrop-filter: blur(5.8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  gap: 2rem;
+}
+#Form .footer .modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+#Form .footer .modal .fa-xmark {
+  align-self: flex-end;
+  cursor: pointer;
+  color: #7a7b7b;
+  font-size: 1.2rem;
+  transition: color 0.5s;
+}
+#Form .footer .modal .fa-xmark:hover {
+  color: #181818;
+}
+#Form .footer .modal .form-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+#Form .footer .modal .form-input .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#Form .footer .modal .form-input .input-group .control-label {
+  color: #7a7b7b;
+}
+#Form .footer .modal .form-input .input-group .input-text {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #5792b0;
+}
+#Form .footer .modal .form-input .submit {
+  background-color: #5792b0;
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.5s;
+}
+#Form .footer .modal .form-input .submit:hover {
+  background-color: rgba(87, 146, 176, 70%);
+}
+#Form .footer .fa-plus {
+  font-size: 3rem;
+  cursor: pointer;
+  color: #5792b0;
+  transition: color 0.5s;
+}
+#Form .footer .fa-plus:hover {
+  color: rgba(87, 146, 176, 70%);
+}
+#Form .footer .total {
+  color: #5792b0;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 1100px) {
+  .App {
+    width: 90%;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media (max-width: 700px) {
+  #Form .footer .modal {
+    width: 80%;
+    left: 10%;
+    top: 10%;
+  }
+}
+@media (max-width: 400px) {
+  .App {
+    width: 95%;
+  }
+  #Form .footer .modal {
+    width: 90%;
+    left: 5%;
+    top: 10%;
   }
 }

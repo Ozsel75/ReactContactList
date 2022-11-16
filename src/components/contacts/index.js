@@ -1,21 +1,52 @@
-import React from 'react'
-import List from '../list'
-import Form from '../Form'
-import { useState, useEffect } from 'react'
+import { useState } from "react";
 
-function Contacts() {
-  const [contacts, setContacts] = useState([]);
+import List from "./List";
+import Form from "./Form";
+import Search from "./Search";
 
-  useEffect (() => {
-    console.log(contacts);
-  }, [contacts])
+function Contacts({ alert, setAlert }) {
+  const [contacts, setContacts] = useState([
+    {
+      fullname: "Jason Newsted",
+      phone_number: "123123",
+    },
+    {
+      fullname: "Nick menza",
+      phone_number: "233445",
+    },
+  ]);
+  const [filterText, setFilterText] = useState("");
+
+  const filtered = contacts.filter((item) => {
+    return Object.keys(item).some((key) =>
+      item[key].toString().toLowerCase().includes(filterText.toLowerCase())
+    );
+  });
 
   return (
-    <div>Contacts
-        <List />
-        <Form addContact={setContacts} contacts={contacts}/>
+    <div className="content">
+      <div id="Search">
+        <h1 className="appTitle">Contact App</h1>
+        <Search
+          contacts={contacts}
+          filterText={filterText}
+          setFilterText={setFilterText}
+        />
+      </div>
+      <div id="List">
+        <List contacts={contacts} filtered={filtered} />
+      </div>
+      <div id="Form">
+        <Form
+          addContact={setContacts}
+          contacts={contacts}
+          filtered={filtered}
+          setAlert={setAlert}
+          alert={alert}
+        />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Contacts
+export default Contacts;
